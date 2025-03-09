@@ -153,18 +153,23 @@ def load_proxies():
     with open(PROXY_FILE, "r") as f:
         return [line.strip() for line in f if line.strip() and line.startswith(('http', 'socks5'))]
 
-def load_dork_file(file_path):
-    """Load custom dork patterns"""
-    if not os.path.exists(file_path):
-        console.print(f"[bold red]❌ Dork file not found: {file_path}[/]")
-        return None
-    dorks = {}
+def load_dorks(file_path):
+    """Loads dorks from a given file and returns them as a list."""
+    dorks = []
     with open(file_path, "r") as f:
         for line in f:
-            if ":" in line:
-                category, query = line.split(":", 1)
-                dorks[category.strip()] = query.strip()
+            line = line.strip()
+            if line and not line.startswith("#"):  # Ignore empty lines and comments
+                dorks.append(line)
     return dorks
+
+# Example usage:
+dork_file = "dorks.txt"
+dork_list = load_dorks(dork_file)
+
+print(f"Loaded {len(dork_list)} dorks!")
+for dork in dork_list[:5]:  # Print first 5 dorks for verification
+    print(dork)
 
 def wayback_search(domain, proxies=None, dashboard=None):
     """Fetch historical data from Wayback Machine"""
