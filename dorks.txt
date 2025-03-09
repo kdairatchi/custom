@@ -1,0 +1,131 @@
+# SQL Injection (SQLi) Dorks
+inurl:index.php?id=
+inurl:trainers.php?id=
+inurl:buy.php?category=
+inurl:article.php?ID=
+inurl:newsDetail.php?id=
+inurl:product-item.php?id=
+inurl:select_biblio.php?id=
+inurl:review.php?id=
+inurl:opinions.php?id=
+inurl:games.php?id=
+
+# Cross-Site Scripting (XSS) Dorks
+inurl:search.php?q=
+inurl:query=
+inurl:keyword=
+inurl:lang=
+inurl:feedback=
+inurl:tag=
+inurl:vote=
+inurl:cmd=
+inurl:execute=
+inurl:searchResults.php?query=
+inurl:headersearch.php?sid=
+
+# Local & Remote File Inclusion (LFI/RFI) Dorks
+inurl:page.php?file=
+inurl:pageid=
+inurl:index.php?page=
+inurl:index.php?cat=
+inurl:loadpsb.php?id=
+inurl:modules.php?name=
+inurl:download.php?file=
+inurl:main.php?page=
+inurl:show.php?id=
+inurl:view.php?file=
+
+# API Endpoints & Sensitive Data Exposure Dorks
+inurl:/api/
+inurl:/rest/
+inurl:/v1/
+inurl:/v2/
+inurl:/swagger
+inurl:/graphql
+inurl:graphiql
+inurl:swagger.json
+inurl:api-docs
+intitle:"Swagger UI"
+filetype:json "API Key"
+intext:"API_KEY" "SECRET"
+intext:"Authorization: Bearer"
+
+# Admin Panels & Authentication Dorks
+intitle:"Admin Login"
+intitle:"Administrator Login"
+intitle:"admin panel" "login"
+inurl:admin/login
+inurl:admin_login
+inurl:administrator
+inurl:adminpanel
+inurl:wp-admin
+inurl:login.asp?admin
+intext:"Welcome Admin" "Login"
+
+# Cloud Storage Leaks (AWS S3, Google Drive, Dropbox, etc.)
+site:*.s3.amazonaws.com
+site:amazonaws.com inurl:".s3.amazonaws.com/"
+intitle:"index of" "s3.amazonaws.com"
+site:storage.googleapis.com
+site:blob.core.windows.net
+site:.digitaloceanspaces.com
+inurl:"drive.google.com/uc?id="
+inurl:"dropbox.com/s/"
+
+# Open Redirect, SSRF, and RCE Prone Parameters
+inurl:url=http
+inurl:url=https
+inurl:redirect=http
+inurl:redirect=https
+inurl:link=http
+inurl:link=https
+inurl:return=http
+inurl:returnUrl=http
+inurl:next=http
+inurl:next=https
+inurl:fetch?url=
+inurl:proxy?url=
+inurl:rss_url=
+inurl:feed=
+inurl:api_url=
+inurl:dest=http
+inurl:callbackUrl=http
+inurl:cmd=
+inurl:exec=
+inurl:execute=
+inurl:run=
+inurl:query=
+inurl:code=
+intitle:"PHP Shell"
+intitle:"Shell Upload"
+
+# Juicy File Extensions (logs, backups, config files, etc.)
+filetype:log
+filetype:conf
+filetype:cnf
+filetype:cfg
+filetype:ini
+filetype:env
+filetype:xml
+filetype:json
+filetype:sql
+filetype:bak
+filetype:old
+filetype:backup
+filetype:swp
+filetype:~
+filetype:txt
+filetype:csv
+filetype:pem
+filetype:ppk
+filetype:key
+filetype:htpasswd
+filetype:htaccess
+intext:"BEGIN RSA PRIVATE KEY"
+
+# Wayback Machine Dorks (Historical Data & Endpoints)
+site:archive.org "example.com"
+site:archive.org "example.com" ext:bak
+site:archive.org "example.com" ext:old
+site:archive.org "example.com" "admin"
+site:archive.org "example.com" "password"
