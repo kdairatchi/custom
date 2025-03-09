@@ -35,13 +35,23 @@ def load_proxies():
         return [line.strip() for line in f.readlines()]
 
 # 🌍 Load Custom Dork File
-def load_dork_file(file_path):
-    if not os.path.exists(file_path):
-        console.print(f"[bold red]❌ Dork file not found: {file_path}[/]")
-        return None
+def load_dorks(file_path):
+    """Loads dorks from a given file and returns them as a list."""
+    dorks = []
     with open(file_path, "r") as f:
-        dorks = [line.strip() for line in f.readlines() if line.strip()]
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):  # Ignore empty lines and comments
+                dorks.append(line)
     return dorks
+
+# Example usage:
+dork_file = "dorks.txt"
+dork_list = load_dorks(dork_file)
+
+print(f"Loaded {len(dork_list)} dorks!")
+for dork in dork_list[:5]:  # Print first 5 dorks for verification
+    print(dork)
 
 # 🌍 Use Wayback Machine to Find Old URLs
 def wayback_search(domain):
