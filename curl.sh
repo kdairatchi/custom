@@ -76,8 +76,27 @@ if [ -f "$PAYLOAD_FILE" ]; then
                     --max-time 30
                 sleep "$DELAY"
             done
-        done
-
+            
+        echo -e "${YELLOW}[+] Testing Base64 Encoded Payload${NC}"
+        curl -X GET "$TARGET_URL" \
+            -d "$(echo $BASE64_PAYLOAD | base64 -d)" \
+            -H "X-Original-URL: /admin" \
+            -H "Referer: $REFERER" \
+            ${PROXY:+-x "$PROXY"} \
+            --limit-rate "$RATE_LIMIT" \
+            --max-time 30
+        sleep "$DELAY"
+        
+                # trace Payload 
+        echo -e "${YELLOW}[+] Testing Trace Encoded Payload${NC}"
+        curl -X TRACE "$TARGET_URL" \
+            -d "$(echo $BASE64_PAYLOAD | base64 -d)" \
+            -H "User-Agent: $USER_AGENT" \
+            -H "Referer: $REFERER" \
+            ${PROXY:+-x "$PROXY"} \
+            --limit-rate "$RATE_LIMIT" \
+            --max-time 30
+        sleep "$DELAY"
         # Base64 Payload Test
         echo -e "${YELLOW}[+] Testing Base64 Encoded Payload${NC}"
         curl -X POST "$TARGET_URL" \
